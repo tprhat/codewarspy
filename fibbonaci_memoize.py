@@ -20,20 +20,10 @@
 #
 # Refactor the function into a recursive Fibonacci function that using a memoized data structure avoids the
 # deficiencies of tree recursion Can you make it so the memoization cache is private to this function?
+from functools import lru_cache
 
 
-def memoize(f):
-    memo = {}
-
-    def helper(x):
-        if x not in memo:
-            memo[x] = f(x)
-        return memo[x]
-
-    return helper
-
-
-@memoize
+@lru_cache(None)
 def fibonacci(n):
     if n in [0, 1]:
         return n
